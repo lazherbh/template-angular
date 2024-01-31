@@ -1,13 +1,13 @@
 ## Calendar NoteBook
 
-技术栈: angular + ng-zorro
+technology stack: angular + ng-zorro
 
-### 下载启动
+### Download starts
 
 ```js
-git clone 项目地址
+git clone https://github.com/lazherbh/template-angular/tree/master
 npm install
 ng serve
 ```
 
-### 项目展示
+### Project display
