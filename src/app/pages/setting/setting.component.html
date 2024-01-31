@@ -1,0 +1,13 @@
+<div class="full-screen setting-container">
+  <div class="back-btn floating-btn" (click)="goBack()">
+      <i class="anticon anticon-left"></i>
+  </div>
+  <div class="content">
+    <div class="body">
+      <img class="avatar" src="./assets/img/default-avatar.png">
+      <nz-divider nzType="horizontal" nzText="username"></nz-divider>
+      <input nz-input nzSize="large" [(ngModel)]="usernameInput" placeholder="username" (blur)="validateUsername()"/>
+      <nz-divider [nzType]="'horizontal'" [nzText]="'Apply settings'"></nz-divider>
+    </div>
+  </div>
+</div>

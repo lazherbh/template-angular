@@ -1,0 +1,7 @@
+<input 
+	nz-input 
+	#addInput  
+	placeholder="Enter to-do list" 
+	(keydown.enter)="addTodo(addInput.value); addInput.value = ''"
+	style="width: 400px;"
+>

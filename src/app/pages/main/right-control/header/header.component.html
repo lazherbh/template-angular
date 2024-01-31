@@ -1,0 +1,48 @@
+<div class="header-container">
+	<div class="avater">
+		<img src="./assets/img/img.jpg" class="background-img">
+	</div>
+	<div class="list-title-wrapper">
+		{{ listTitle }}
+	</div>
+	<div class="btn-wrapper">
+		<nz-dropdown nzTrigger="click" [nzClickHide]="false" nzPlacement="bottomRight">
+			<button nz-dropdown nz-button nzType="primary">
+				<i nz-icon nzType="bulb"></i>suggestion
+			</button>
+			<div class="dropdown-content-wrapper" nz-menu>
+				<div nz-menu class="dropdown-content-wrapper">
+					<app-suggest></app-suggest>
+				  </div>
+			</div>
+		</nz-dropdown>
+		<nz-dropdown [nzPlacement]="'bottomRight'">
+			<a nz-dropdown>
+			  <i class="anticon anticon-setting"></i>
+			  set up
+			</a>
+			<ul nz-menu>
+			  <li nz-menu-item (click)="toggleCompletedHide()">
+				{{completedHide ? 'Show completed' : 'Hide completed' }}
+			  </li>
+			  <li nz-submenu>
+				<span title>sort</span>
+				<ul nzSelectable class="sort-option-list">
+				  <li nz-menu-item (click)="switchRankType('title')">
+					name
+				  </li>
+				  <li nz-menu-item (click)="switchRankType('planAt')">
+					planning time
+				  </li>
+				  <li nz-menu-item (click)="switchRankType('dueAt')">
+					deadline
+				  </li>
+				  <li nz-menu-item (click)="switchRankType('completeFlag')">
+					finished condition
+				  </li>
+				</ul>
+			  </li>
+			</ul>
+		  </nz-dropdown>
+	</div>
+</div>

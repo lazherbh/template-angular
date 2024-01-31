@@ -1,0 +1,93 @@
+<div class="left-list">
+	<ul nz-menu
+    [nzMode]="'inline'"
+    [nzInlineCollapsed]="isCollapsed">
+  <li nz-menu-item
+      [nzSelected]="currentListUuid === 'today'"
+      (click)="click('today')">
+    <span>
+      <i nz-icon nzType="home"></i>
+      <span class="nav-text">Today</span>
+    </span>
+  </li>
+  <li nz-menu-item
+      (click)="click('todo')"
+      [nzSelected]="currentListUuid === 'todo'">
+    <span>
+      <i nz-icon nzType="calendar"></i>
+      <span class="nav-text">TODO</span>
+    </span>
+  </li>
+  <li nz-menu-item
+      *ngFor="let list of lists"
+      [nzSelected]="currentListUuid === list._id"
+      (click)="click(list._id)"
+      (contextmenu)="contextMenu($event, contextTemplate, list._id)">
+    <span>
+      <i nz-icon nzType="bars"></i>
+      <span class="nav-text">{{ list.title }}</span>
+    </span>
+  </li>
+</ul>
+</div>
+
+<ng-template #contextTemplate>
+  <ul nz-menu
+      [nzInDropDown]="true"
+      [nzSelectable]="true"
+      (nzClick)="close()">
+    <li nz-menu-item
+        (click)="openRenameListModal()">
+      <i nz-icon nzType="edit"></i>
+      <span>double naming</span>
+    </li>
+    <li nz-menu-divider></li>
+    <li nz-menu-item
+        (click)="delete()">
+      <i nz-icon nzType="delete"></i>
+      <span class="danger">delete list</span>
+    </li>
+  </ul>
+</ng-template>
+
+<nz-modal [(nzVisible)]="addListModalVisible"
+          nzTitle="Add new list"
+          [nzClosable]="true"
+          [nzWidth]="420"
+          nzOkText="Add to"
+          nzCancelText="Cancel"
+          [nzMaskClosable]="true"
+          (nzOnCancel)="closeAddListModal()"
+          (nzOnOk)="handleAddList()">
+  <form nz-form>
+    <nz-form-item>
+      <nz-form-control>
+        <input nz-input
+               [(ngModel)]="listInput"
+               placeholder="List name"
+			   name="listInput"
+               (keydown.enter)="handleAddList()">
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="renameListModalVisible"
+          [nzTitle]="'Rename list'"
+          [nzClosable]="true"
+          [nzWidth]="420"
+          [nzOkText]="'double naming'"
+          [nzCancelText]="'Cancel'"
+          [nzMaskClosable]="true"
+          (nzOnCancel)="closeRenameListModal()"
+          (nzOnOk)="handleRename()">
+  <form nz-form>
+    <nz-form-item>
+      <nz-form-control>
+        <input nz-input
+               placeholder="List name"
+               (keydown.enter)="handleRename()">
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

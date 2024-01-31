@@ -1,0 +1,48 @@
+.left-container{
+	background-color: #eeddb5;
+}
+ .header-wrapper{
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	overflow: hidden;
+	line-height: 0;
+	padding: 12px;
+}
+
+img{
+	margin-left: 8px;
+	width: 40px;
+	height: 40px;
+}
+
+.username-text{
+	margin-left: 8px;
+	flex: 1;
+	line-height: 40px;
+	font-size: 14px;
+	color: #8c9465;
+}
+.header-btn{
+	color: #8c9465;
+	margin-right: 10px;
+}
+
+.list-wrapper{
+	width: 100%;
+	height: calc(100vh - 64px);
+}
+
+.add-list-btn-wrapper{
+	margin-top: 60px;
+	display: flex;
+	justify-content: center;
+}
+.new-list{
+	color: #8c9465;
+}
+
+>>> .ant-layout-sider-trigger{
+	background-color: #f1c4ad;
+	border: 1px dashed #8c9465;
+}

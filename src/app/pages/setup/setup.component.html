@@ -1,0 +1,17 @@
+<div class="full-screen page-content">
+	<div class="wrapper">
+		<img src="./assets/img/img.jpg" class="logo-img">
+		<div class="text-wrapper">
+			<h1 class="title-text">
+				Calendar NoteBook
+			</h1>
+		</div>
+		<input nz-input placeholder="please enter user name" #usernameInput [(ngModel)]="username">
+		<button nz-button nzType="primary" (click)="handleCompleteSetup()" [disabled]="!usernameInput.value">
+			Start
+		</button>
+		<div class="copy-right">
+			Copyright © 2022 GouYuQing
+		  </div>
+	</div>
+</div>

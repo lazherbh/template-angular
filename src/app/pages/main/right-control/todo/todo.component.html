@@ -1,0 +1,73 @@
+<nz-list 
+	*ngIf="todos.length > 0" 
+	[nzDataSource]="todos" 
+	[nzRenderItem]="item"
+	[nzItemLayout]="horizontal"
+>
+	<ng-template #item let-item>
+		<nz-list-item class="todo-item" (click)="clickItem(item._id)" (contextmenu)="contextMenu($event, todoContextRef, item._id)">
+		  <nz-list-item-meta
+				[nzTitle]="nzTitle"
+				[nzDescription]="nzDescription"
+			>
+			<ng-template #nzTitle>
+				<label 
+					nz-checkbox
+					(click)="$event.stopPropagation()"
+					[(ngModel)]="item.completedFlag"
+					(ngModelChange)="handleToggle(item._id)"
+					>
+				</label>
+				<span *ngIf="!item.completedFlag">{{ item.title }}</span>
+				<span class="strikethrough" *ngIf="item.completedFlag">{{ item.title }}</span>
+			</ng-template>
+			<ng-template #nzDescription>
+				<span *ngIf="item.dueAt"
+					class="todo-desc">
+				<i nz-icon nzType="calendar"></i> {{ item.dueAt | date }}</span>
+				<span *ngIf="item.planAt"
+						class="todo-desc">
+					<i nz-icon nzType="clock-circle"></i> {{ item.planAt | date }}</span>
+				<span *ngIf="item.notifyMe"
+						class="todo-desc">
+					<i nz-icon nzType="bell"></i>
+				</span>
+				<span *ngIf="item.desc">
+					<i nz-icon nzType="edit"></i>
+				</span>
+			</ng-template>	
+		</nz-list-item-meta>
+		</nz-list-item>
+	</ng-template>
+</nz-list>
+
+<ng-template #todoContextRef>
+	<ul nz-menu [nzInDropDown]="true" (nzClick)="close()">
+		<li nz-menu-item (click)="setToday()">
+			<i nz-icon nzType="home"></i><span>Set as today</span>
+		</li>
+		<li nz-submenu>
+			<span title>
+				<i nz-icon nzType="bars"></i>move to...
+			</span>
+			<ul>
+				<li 
+					nz-menu-item 
+					*ngIf="currentContextTodo?.listUUID !== 'todo'"
+					(click)="moveToList('todo')"
+					>default list</li>
+				<li nz-menu-item
+					*ngFor="let list of listsExcept(currentContextTodo.listUUID)"
+					(click)="moveToList(list._id)">
+				  {{ list.title }}
+				</li>
+			</ul>
+		</li>
+		<li nz-menu-divider></li>
+		<li nz-menu-item (click)="delete()">
+			<i nz-icon nzType="delete"></i><span class="danger">delete</span>
+		</li>
+	</ul>
+</ng-template>
+
+

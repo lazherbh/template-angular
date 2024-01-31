@@ -1,0 +1,36 @@
+
+<div style="text-align: right;">
+<button nz-button nzType="primary" nzSize="large" nzShape="circle" (click)="handleConfirm()" style="margin-right: 10px;">
+	<i nz-icon nzType="check"></i>
+</button>
+<button nz-button nz-popconfirm nzPlacement="bottomRight" nzTitle="Do you really want to delete this to-do?" (nzOnConfirm)="delete()" nzType="danger"
+	nzSize="large" nzShape="circle">
+	<i nz-icon nzType="delete"></i>
+</button>
+</div>
+<label nz-checkbox (click)="$event.stopPropagation()" [(ngModel)]="currentTodo.completedFlag"></label>
+<span>Mark complete</span>
+<nz-divider nzText="title" nzOrientation="left"></nz-divider>
+<div class="input-container">
+<input nz-input [(ngModel)]="currentTodo.title" placeholder="To-do list" [disabled]="!!currentTodo.completedFlag" id="title" name="title">
+</div>
+<nz-divider nzText="Dates and Reminders" nzOrientation="left"></nz-divider>
+<div class="due-date-container input-container">
+<span class="prefix">expiration date</span>
+<nz-date-picker [(ngModel)]="dueDate" [disabled]="!!currentTodo.completedFlag" [nzDisabledDate]="dueDisabledDate" (ngModelChange)="handleDueDateChange($event)">
+</nz-date-picker>
+</div>
+<div class="plan-date-container input-container">
+<span class="prefix">Planned date</span>
+<nz-date-picker nzShowTime [(ngModel)]="planDate" [disabled]="!!currentTodo.completedFlag" [nzDisabledDate]="planDisabledDate"
+	(ngModelChange)="handlePlanDateChange($event)">
+</nz-date-picker>
+</div>
+<div class="input-container">
+<span class="prefix">Plan reminder</span>
+<nz-switch [(ngModel)]="currentTodo.notifyMe" [nzControl]="true" [nzDisabled]="!!currentTodo.completedFlag" (click)="clickSwitch()"></nz-switch>
+</div>
+<nz-divider nzText="More" nzOrientation="left"></nz-divider>
+<div class="input-container">
+<textarea nz-input="" row="8" placeholder="To-do details" [disabled]="!!currentTodo.completedFlag" [(ngModel)]="currentTodo.desc"></textarea>
+</div>

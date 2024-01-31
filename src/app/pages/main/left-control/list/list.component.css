@@ -1,0 +1,10 @@
+.ant-menu {
+	background-color: #eeddb5;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+ background-color: #f1c4ad;
+}
+
+.nav-text{
+	color: #8c9465;
+}

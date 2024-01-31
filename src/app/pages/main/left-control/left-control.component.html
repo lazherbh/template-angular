@@ -1,0 +1,21 @@
+<div class="left-container">
+	<div class="header-wrapper">
+		<img src="./assets/img/default-avatar.png">
+		<span class="username-text" *ngIf="!isCollapsed">{{ username }}</span>
+		<div class="floating-btn header-btn" *ngIf="!isCollapsed" (click)="goSetting()">
+			<i  nz-icon nzType="setting"></i>
+		</div>
+		<div class="floating-btn header-btn" *ngIf="!isCollapsed" (click)="goSummary()">
+			<i nz-icon nzType="calendar"></i>
+		</div>
+	</div>
+	<div class="list-wrapper">
+		<app-list [isCollapsed]="isCollapsed"></app-list>
+		<div class="add-list-btn-wrapper">
+			<button nz-button [nzGhost]="true" nzType="dashed" class="new-list" (click)="openAddListModal()">
+				<i nz-icon nzType="plus"></i>
+				<span *ngIf="!isCollapsed">new list</span>
+			</button>
+		</div>
+	</div>
+</div>
